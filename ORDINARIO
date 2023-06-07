@@ -1,0 +1,132 @@
+CREATE DATABASE ORDINARIO;
+USE ORDINARIO;
+
+
+CREATE TABLE Universidades (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(100),
+    direccion_id INT,
+    ciudad VARCHAR(100),
+    region VARCHAR(100),
+    FOREIGN KEY (direccion_id) REFERENCES Direcciones(id)
+);
+
+
+CREATE TABLE Direcciones (
+    id INT PRIMARY KEY,
+    calle VARCHAR(100),
+    ciudad VARCHAR(100),
+    region VARCHAR(100),
+    codigo_postal VARCHAR(20)
+);
+
+
+CREATE TABLE Facultades (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(100),
+    universidad_id INT,
+    FOREIGN KEY (universidad_id) REFERENCES Universidades(id)
+);
+
+
+CREATE TABLE ProgramasAcademicos (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(100),
+    facultad_id INT,
+    FOREIGN KEY (facultad_id) REFERENCES Facultades(id)
+);
+
+
+CREATE TABLE IDs (
+    universidad_id INT,
+    direccion_id INT,
+    facultad_id INT,
+    programa_id INT,
+    FOREIGN KEY (universidad_id) REFERENCES Universidades(id),
+    FOREIGN KEY (direccion_id) REFERENCES Direcciones(id),
+    FOREIGN KEY (facultad_id) REFERENCES Facultades(id),
+    FOREIGN KEY (programa_id) REFERENCES ProgramasAcademicos(id)
+);
+
+
+
+
+INSERT INTO Direcciones (id, calle, ciudad, region, codigo_postal)
+VALUES
+    (1, 'Calle Juárez 123', 'Oaxaca de Juárez', 'Valles Centrales', '68000'),
+    (2, 'Avenida Reforma 456', 'Oaxaca de Juárez', 'Valles Centrales', '68010'),
+    (3, 'Calle Hidalgo 789', 'Puerto Ángel', 'Costa', '68020'),
+    (4, 'Avenida Universidad 321', 'Tehuantepec', 'Istmo de Tehuantepec', '68030'),
+    (5, 'Calle Independencia 654', 'Oaxaca de Juárez', 'Valles Centrales', '68040'),
+    (6, 'Avenida Benito Juárez 987', 'Oaxaca de Juárez', 'Valles Centrales', '68050'),
+    (7, 'Calle Madero 654', 'Oaxaca de Juárez', 'Valles Centrales', '68060'),
+    (8, 'Avenida Morelos 321', 'Oaxaca de Juárez', 'Valles Centrales', '68070'),
+    (9, 'Calle 5 de Mayo 987', 'Oaxaca de Juárez', 'Valles Centrales', '68080'),
+    (10, 'Avenida Zaragoza 654', 'Ixtlán de Juárez', 'Sierra Juárez', '68090');
+
+
+
+
+
+
+INSERT INTO Universidades (id, nombre, direccion_id, ciudad, region)
+VALUES
+    (1, 'Universidad Autónoma Benito Juárez de Oaxaca', 1, 'Oaxaca de Juárez', 'Valles Centrales'),
+    (2, 'Instituto Tecnológico de Oaxaca', 2, 'Oaxaca de Juárez', 'Valles Centrales'),
+    (3, 'Universidad del Mar', 3, 'Puerto Ángel', 'Costa'),
+    (4, 'Universidad Regional del Sureste', 4, 'Tehuantepec', 'Istmo de Tehuantepec'),
+    (5, 'Universidad Tecnológica de los Valles Centrales de Oaxaca', 5, 'Oaxaca de Juárez', 'Valles Centrales'),
+    (6, 'Universidad José Vasconcelos', 6, 'Oaxaca de Juárez', 'Valles Centrales'),
+    (7, 'Universidad Anáhuac Oaxaca', 7, 'Oaxaca de Juárez', 'Valles Centrales'),
+    (8, 'Universidad Mesoamericana de Oaxaca', 8, 'Oaxaca de Juárez', 'Valles Centrales'),
+    (9, 'Universidad La Salle Oaxaca', 9, 'Oaxaca de Juárez', 'Valles Centrales'),
+    (10, 'Universidad de la Sierra Juárez', 10, 'Ixtlán de Juárez', 'Sierra Juárez');
+
+
+
+
+INSERT INTO Facultades (id, nombre, universidad_id)
+VALUES
+    (1, 'Facultad de Ciencias Exactas y Naturales', 1),
+    (2, 'Facultad de Ingeniería', 2),
+    (3, 'Facultad de Ciencias del Mar', 3),
+    (4, 'Facultad de Arquitectura', 4),
+    (5, 'Facultad de Tecnología de la Información', 5),
+    (6, 'Facultad de Ciencias de la Educación', 6),
+    (7, 'Facultad de Ciencias Sociales', 7),
+    (8, 'Facultad de Ciencias de la Salud', 8),
+    (9, 'Facultad de Ciencias Económicas y Administrativas', 9),
+    (10, 'Facultad de Ciencias Agropecuarias', 10);
+
+
+
+
+
+INSERT INTO ProgramasAcademicos (id, nombre, facultad_id)
+VALUES
+    (1, 'Licenciatura en Matemáticas', 1),
+    (2, 'Ingeniería en Sistemas Computacionales', 2),
+    (3, 'Licenciatura en Biología Marina', 3),
+    (4, 'Licenciatura en Arquitectura', 4),
+    (5, 'Ingeniería en Tecnologías de la Información', 5),
+    (6, 'Licenciatura en Ciencias de la Educación', 6),
+    (7, 'Licenciatura en Ciencias Sociales', 7),
+    (8, 'Licenciatura en Enfermería', 8),
+    (9, 'Licenciatura en Administración de Empresas', 9),
+    (10, 'Ingeniería Agronómica', 10);
+
+
+
+
+INSERT INTO IDs (universidad_id, direccion_id, facultad_id, programa_id)
+VALUES
+    (1, 1, 1, 1),
+    (2, 2, 2, 2),
+    (3, 3, 3, 3),
+    (4, 4, 4, 4),
+    (5, 5, 5, 5),
+    (6, 6, 6, 6),
+    (7, 7, 7, 7),
+    (8, 8, 8, 8),
+    (9, 9, 9, 9),
+    (10, 10, 10, 10);
